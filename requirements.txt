@@ -1,0 +1,8 @@
+flask==2.2.2
+flask_sockets==0.2.1
+flask_socketio==2.1.1
+gevent==22.10.2
+gevent-websocket==0.10.1
+opencv-python
+youtube-dl
+pickle
