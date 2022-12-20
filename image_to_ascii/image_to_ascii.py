@@ -10,7 +10,7 @@ import torchvision.transforms as transforms
 # define a torch to pill transformer
 TORCH_TO_PIL = transforms.ToPILImage()
 PIL_TO_TORCH = transforms.PILToTensor()
-GAUSSIAN_BLUR = transforms.GaussianBlur(5, sigma=(1.3, 1.7))
+GAUSSIAN_BLUR = transforms.GaussianBlur(5, sigma=(1.3, 2.7))
 
 def load_image_from_string(image_path):
     """Load image from path and return a numpy array
@@ -145,6 +145,7 @@ def preprocess_image(img, height, width):
     # get the edges
     img = torch.nn.functional.conv2d(img[None, :, :, :], kernel, padding=1)
     img = img.min(dim=1)[0][0]
+    #img = img.mean(dim=1)[0]
    
     # resize the image
     img = img[:height*int(img.shape[0]/height), :width*int(img.shape[1]/width)]
@@ -168,9 +169,9 @@ def preprocess_image(img, height, width):
 def main():
 
     # load the image
-    img = load_image_from_string('data/photo_cat.jpg')
-    img = load_image_from_string('data/dieter.jpeg')
-    img = load_image_from_string('data/lena.jpg')
+    #img = load_image_from_string('data/photo_cat.jpg')
+    #img = load_image_from_string('data/lena.jpg')
+    img = load_image_from_string('data/cat_3.png')
     show_image_from_tensor(img.to(torch.uint8))
 
     #img = load_image_from_string('data/test.jpg')
